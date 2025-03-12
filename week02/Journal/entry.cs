@@ -18,7 +18,7 @@ public class Entry
         Console.WriteLine($"Date: {_date}");
         Console.WriteLine($"Prompt: {_prompt}");
         Console.WriteLine($"Response: {_response}");
-        Console.WriteLine("------------------------------");
+        Console.WriteLine("________________________________________");
     }
 
     public string ToFileFormat()
