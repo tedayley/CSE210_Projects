@@ -4,9 +4,16 @@ class Fraction:
     def __init__(self, numerator, denominator):
         if denominator == 0:
             raise ValueError("Denominator cannot be zero.")
+        
+        # Simplify the fraction using gcd
         common_divisor = gcd(numerator, denominator)
         self.numerator = numerator // common_divisor
         self.denominator = denominator // common_divisor
+        
+        # Ensure the denominator is positive for consistent representation
+        if self.denominator < 0:
+            self.numerator = -self.numerator
+            self.denominator = -self.denominator
 
     def __str__(self):
         return f"{self.numerator}/{self.denominator}"
@@ -44,4 +51,4 @@ f2 = Fraction(3, 4)
 print(f1)  # Output: 2/3
 print(f1.to_decimal())  # Output: 0.6666...
 print(f1 + f2)  # Output: 17/12
-print(f1 * f2)  # Output: 1/2
+print(f1 * f2)  # Output: 6/12 or 1/2 after reduction
