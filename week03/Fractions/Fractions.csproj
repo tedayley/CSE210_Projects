@@ -1,54 +1,10 @@
-from math import gcd
+<Project Sdk="Microsoft.NET.Sdk">
 
-class Fraction:
-    def __init__(self, numerator, denominator):
-        if denominator == 0:
-            raise ValueError("Denominator cannot be zero.")
-        
-        # Simplify the fraction using gcd
-        common_divisor = gcd(numerator, denominator)
-        self.numerator = numerator // common_divisor
-        self.denominator = denominator // common_divisor
-        
-        # Ensure the denominator is positive for consistent representation
-        if self.denominator < 0:
-            self.numerator = -self.numerator
-            self.denominator = -self.denominator
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
 
-    def __str__(self):
-        return f"{self.numerator}/{self.denominator}"
-
-    def to_decimal(self):
-        return self.numerator / self.denominator
-
-    def __add__(self, other):
-        if isinstance(other, Fraction):
-            new_numerator = self.numerator * other.denominator + other.numerator * self.denominator
-            new_denominator = self.denominator * other.denominator
-            return Fraction(new_numerator, new_denominator)
-        raise TypeError("Can only add another Fraction.")
-
-    def __sub__(self, other):
-        if isinstance(other, Fraction):
-            new_numerator = self.numerator * other.denominator - other.numerator * self.denominator
-            new_denominator = self.denominator * other.denominator
-            return Fraction(new_numerator, new_denominator)
-        raise TypeError("Can only subtract another Fraction.")
-
-    def __mul__(self, other):
-        if isinstance(other, Fraction):
-            return Fraction(self.numerator * other.numerator, self.denominator * other.denominator)
-        raise TypeError("Can only multiply by another Fraction.")
-
-    def __truediv__(self, other):
-        if isinstance(other, Fraction):
-            return Fraction(self.numerator * other.denominator, self.denominator * other.numerator)
-        raise TypeError("Can only divide by another Fraction.")
-
-# Example usage
-f1 = Fraction(2, 3)
-f2 = Fraction(3, 4)
-print(f1)  # Output: 2/3
-print(f1.to_decimal())  # Output: 0.6666...
-print(f1 + f2)  # Output: 17/12
-print(f1 * f2)  # Output: 6/12 or 1/2 after reduction
+</Project>
